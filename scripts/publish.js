@@ -6,11 +6,19 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 
+function verifyCleanWorkspace() {
+    const output = execSync(`git status --porcelain`, { encoding: 'utf8' });
+    if (output != '') {
+        console.log('ERROR: Working copy should not contain any uncommitted or untracked files.');
+        process.exit(2);
+    }
+}
+
 function verifyNotYetPublished(fullVersion) {
     try {
         execSync(`git show-ref --quiet --verify refs/remotes/origin/${fullVersion}`, { encoding: 'utf8' });
         console.log(`Version ${fullVersion} already published, nothing to do.`);
-        process.exit(2);
+        process.exit(3);
     } catch { }
 }
 
@@ -53,6 +61,8 @@ function pushMajorVersionBranch(majorVersion, commit) {
 function publish() {
     const fullVersion = 'v' + JSON.parse(fs.readFileSync('package.json')).version;
     const majorVersion = fullVersion.split('.')[0];
+
+    verifyCleanWorkspace();
 
     console.log(`#### Checking if ${fullVersion} already exists...`);
     verifyNotYetPublished(fullVersion);
