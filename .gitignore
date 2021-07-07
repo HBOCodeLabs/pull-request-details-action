@@ -1,4 +1,4 @@
 node_modules
 
 # This folder will be commented out in published branches
-dist
+# dist
