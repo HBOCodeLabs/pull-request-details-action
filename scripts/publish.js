@@ -16,14 +16,14 @@ function verifyCleanWorkspace() {
 
 function verifyNotYetPublished(fullVersion) {
     try {
-        execSync(`git show-ref --quiet --verify refs/remotes/origin/${fullVersion}`, { encoding: 'utf8' });
+        execSync(`git show-ref --quiet --verify refs/remotes/origin/snapshot/${fullVersion}`, { encoding: 'utf8' });
         console.log(`Version ${fullVersion} already published, nothing to do.`);
         process.exit(3);
     } catch { }
 }
 
-function createVersionBranch(fullVersion) {
-    execSync(`git checkout -b ${fullVersion}`, { stdio: 'inherit' });
+function createSnapshotBranch(fullVersion) {
+    execSync(`git checkout -b snapshot/${fullVersion}`, { stdio: 'inherit' });
 }
 
 function editGitIgnoreFile() {
@@ -36,11 +36,16 @@ function buildAction() {
     execSync(`npm run build`, { stdio: 'inherit' });
 }
 
-function pushFullVersionBranch(fullVersion) {
+function pushSnapshotBranch(fullVersion) {
     execSync(`git add .gitignore`, { stdio: 'inherit' });
     execSync(`git add dist`, { stdio: 'inherit' });
     execSync(`git commit -m ":bookmark: ${fullVersion}"`, { stdio: 'inherit' });
     execSync(`git push -u origin HEAD`, { stdio: 'inherit' });
+}
+
+function tagVersion(fullVersion) {
+    execSync(`git tag ${fullVersion}`, { stdio: 'inherit' });
+    execSync(`git push --tags`, { stdio: 'inherit' });
 }
 
 function pushMajorVersionBranch(majorVersion) {
@@ -61,8 +66,8 @@ function publish() {
     console.log(`#### Checking if ${fullVersion} already exists...`);
     verifyNotYetPublished(fullVersion);
 
-    console.log(`\n#### Creating version branch for ${fullVersion}...`);
-    createVersionBranch(fullVersion);
+    console.log(`\n#### Creating snapshot branch for ${fullVersion}...`);
+    createSnapshotBranch(fullVersion);
 
     console.log('\n#### Updating the .gitignore file...');
     editGitIgnoreFile();
@@ -70,8 +75,11 @@ function publish() {
     console.log('\n#### Building action...');
     buildAction();
 
-    console.log(`\n#### Pushing branch ${fullVersion}...`);
-    pushFullVersionBranch(fullVersion);
+    console.log(`\n#### Pushing branch snapshot/${fullVersion}...`);
+    pushSnapshotBranch(fullVersion);
+
+    console.log(`\n#### Tagging version ${fullVersion}...`);
+    tagVersion(fullVersion);
 
     console.log(`\n#### Updating branch ${majorVersion}...`);
     pushMajorVersionBranch(majorVersion);
