@@ -43,18 +43,12 @@ function pushFullVersionBranch(fullVersion) {
     execSync(`git push -u origin HEAD`, { stdio: 'inherit' });
 }
 
-function getLatestCommit() {
-    return execSync(`git show-ref --hash HEAD`, { encoding: 'utf8' }).split(/\r?\n/)[0];
-}
-
-function pushMajorVersionBranch(majorVersion, commit) {
+function pushMajorVersionBranch(majorVersion) {
     try {
-        execSync(`git checkout ${majorVersion}`, { stdio: 'inherit' });
-    } catch {
-        execSync(`git checkout -b ${majorVersion}`, { stdio: 'inherit' });
-    }
+        execSync(`git branch -D ${majorVersion}`, { stdio: 'inherit' });
+    } catch { }
 
-    execSync(`git reset --hard ${commit}`, { stdio: 'inherit' });
+    execSync(`git checkout -b ${majorVersion}`, { stdio: 'inherit' });
     execSync(`git push -f -u origin HEAD`, { stdio: 'inherit' });
 }
 
@@ -80,8 +74,7 @@ function publish() {
     pushFullVersionBranch(fullVersion);
 
     console.log(`#### Updating branch ${majorVersion}...`);
-    const commit = getLatestCommit();
-    pushMajorVersionBranch(majorVersion, commit);
+    pushMajorVersionBranch(majorVersion);
 
     console.log('#### Done.');
 }
