@@ -61,22 +61,22 @@ function publish() {
     console.log(`#### Checking if ${fullVersion} already exists...`);
     verifyNotYetPublished(fullVersion);
 
-    console.log(`#### Creating version branch for ${fullVersion}...`);
+    console.log(`\n#### Creating version branch for ${fullVersion}...`);
     createVersionBranch(fullVersion);
 
-    console.log('#### Updating the .gitignore file...');
+    console.log('\n#### Updating the .gitignore file...');
     editGitIgnoreFile();
 
-    console.log('#### Building action...');
+    console.log('\n#### Building action...');
     buildAction();
 
-    console.log(`#### Pushing branch ${fullVersion}...`);
+    console.log(`\n#### Pushing branch ${fullVersion}...`);
     pushFullVersionBranch(fullVersion);
 
-    console.log(`#### Updating branch ${majorVersion}...`);
+    console.log(`\n#### Updating branch ${majorVersion}...`);
     pushMajorVersionBranch(majorVersion);
 
-    console.log('#### Done.');
+    console.log('\n#### Done.');
 }
 
 publish();
