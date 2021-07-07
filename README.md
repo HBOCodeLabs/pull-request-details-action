@@ -1,6 +1,6 @@
 # pull-request-details-action
 
-Retrieve the details of a specific pull request's head and base branches.
+Retrieve the branch details of a specific pull request.
 
 This action is not useful for workflows triggered by pull request events, where information about the head and base branches of the pull request is already available. However, some events (such as issue comments) do not include the full SHA information for both the head and the base branch, and in those cases this action can be helpful.
 
