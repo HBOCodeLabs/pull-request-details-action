@@ -4,8 +4,8 @@
   "description": "Retrieve the branch details of a specific pull request.",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js --license licenses.txt",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-action": "ncc build index.js --license licenses.txt",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
     "@actions/github": "^4.0.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6"
+    "@vercel/ncc": "^0.28.6",
+    "jest": "^27.0.6"
   },
-  "bin": "./cli.js",
   "license": "MIT"
 }

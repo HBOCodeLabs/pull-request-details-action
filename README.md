@@ -16,7 +16,7 @@ jobs:
   helper:
     runs-on: ubuntu-latest
     steps:
-      - uses: HBOCodeLabs/pull-request-details-action
+      - uses: HBOCodeLabs/pull-request-details-action@v1
         id: pull-request
         with:
           owner: ${{ github.event.repository.owner.login }}
