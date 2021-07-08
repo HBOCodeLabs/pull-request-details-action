@@ -4,8 +4,9 @@
   "description": "Retrieve the branch details of a specific pull request.",
   "main": "index.js",
   "scripts": {
-    "build-action": "ncc build index.js --license licenses.txt",
-    "test": "jest"
+    "test": "jest",
+    "bundle": "ncc build index.js --license licenses.txt",
+    "publish": "scripts/publish.js"
   },
   "repository": {
     "type": "git",

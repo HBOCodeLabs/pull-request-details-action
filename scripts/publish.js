@@ -32,8 +32,8 @@ function editGitIgnoreFile() {
     fs.writeFileSync('.gitignore', lines.join('\n'));
 }
 
-function buildAction() {
-    execSync(`npm run build`, { stdio: 'inherit' });
+function bundleAction() {
+    execSync(`npm run bundle`, { stdio: 'inherit' });
 }
 
 function pushSnapshotBranch(fullVersion) {
@@ -73,7 +73,7 @@ function publish() {
     editGitIgnoreFile();
 
     console.log('\n#### Building action...');
-    buildAction();
+    bundleAction();
 
     console.log(`\n#### Pushing branch snapshot/${fullVersion}...`);
     pushSnapshotBranch(fullVersion);
