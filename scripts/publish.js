@@ -18,7 +18,7 @@ function verifyNotYetPublished(fullVersion) {
     try {
         execSync(`git show-ref --quiet --verify refs/remotes/origin/snapshot/${fullVersion}`, { encoding: 'utf8' });
         console.log(`Version ${fullVersion} already published, nothing to do.`);
-        process.exit(3);
+        process.exit(0);
     } catch { }
 }
 
