@@ -1,0 +1,30 @@
+{
+  "name": "pull-request-details-action",
+  "version": "1.0.6",
+  "description": "Retrieve the branch details of a specific pull request.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "bundle": "ncc build index.js --license licenses.txt",
+    "publish-github-action": "scripts/publish-github-action.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HBOCodeLabs/pull-request-details-action.git"
+  },
+  "keywords": [
+    "github-action",
+    "utility",
+    "pull-request"
+  ],
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.28.6",
+    "jest": "^27.0.6"
+  },
+  "license": "MIT"
+}

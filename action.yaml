@@ -1,0 +1,35 @@
+name: 'Pull Request Details'
+description: 'Retrieve branch details of an existing pull request'
+inputs:
+  owner:
+    description: 'user/org name'
+    required: true
+  repo:
+    description: 'repo name'
+    required: true
+  pull-number:
+    description: 'pull request number'
+    required: true
+  repo-token:
+    description: 'token to use for repo access (typically GITHUB_TOKEN)'
+    required: true
+outputs:
+  base-ref:
+    description: 'ref name of base branch'
+  base-sha:
+    description: 'commit sha of base branch'
+  base-owner:
+    description: 'user/org name of base branch'
+  base-repo:
+    description: 'repo name of base branch'
+  head-ref:
+    description: 'ref name of head branch'
+  head-sha:
+    description: 'commit sha of head branch'
+  head-owner:
+    description: 'user/org name of head branch'
+  head-repo:
+    description: 'repo name of head branch'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
