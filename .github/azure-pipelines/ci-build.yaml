@@ -19,3 +19,4 @@ steps:
     inputs:
       codeCoverageTool: Cobertura
       summaryFileLocation: temp/coverage/*.xml
+      reportDirectory: temp/coverage
