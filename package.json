@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "bundle": "ncc build index.js --license licenses.txt",
+    "bundle": "ncc build lib/index.js --license licenses.txt",
     "publish-github-action": "scripts/publish-github-action.js"
   },
   "repository": {
