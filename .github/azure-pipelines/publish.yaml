@@ -8,6 +8,8 @@ variables:
 pool:
   vmImage: ubuntu-latest
 steps:
+  - checkout: self
+    persistCredentials: true 
   - task: NodeTool@0
     displayName: 'Use Node 12'
     inputs:
