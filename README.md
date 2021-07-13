@@ -74,7 +74,7 @@ Note: for the versions listed below, your workflows can refer to either the vers
 
 The major version branch may be updated with backwards-compatible features and bug fixes. Version tags will not be modified once released.
 
-#### 2021-07-09 - `v1.0.5` (`v1`)
+#### 2021-07-09 - `v1.0.6` (`v1`)
 
  - Initial public release.
 

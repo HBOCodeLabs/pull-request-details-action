@@ -1,13 +1,13 @@
 {
   "name": "pull-request-details-action",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Retrieve the branch details of a specific pull request.",
   "main": "index.js",
   "private": true,
   "scripts": {
     "test": "jest",
     "bundle": "ncc build index.js --license licenses.txt",
-    "publish": "scripts/publish.js"
+    "publish-github-action": "scripts/publish-github-action.js"
   },
   "repository": {
     "type": "git",
