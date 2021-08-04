@@ -1,6 +1,6 @@
 {
   "name": "pull-request-details-action",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Retrieve the branch details of a specific pull request.",
   "main": "index.js",
   "private": true,
