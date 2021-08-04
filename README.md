@@ -87,4 +87,24 @@ npm install
 npm test
 ```
 
+## Debugging
+
+To test out modifications in a developer branch, create a branch in your fork, then comment out the `dist`
+line in `.gitignore`. Then you can run the `bundle` task, check in all changes, and push up your branch.
+
+```console
+git checkout -b debug
+npm run bundle
+git add .gitignore
+git add dist
+git commit -m "testing out my changes in a workflow"
+git push -u origin HEAD
+```
+
+In your GitHub workflow in another project, point at your custom branch:
+
+```yaml
+  - uses: MyForkedCopy/pull-request-details-action@debug
+```
+
 [gh action docs]: https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
