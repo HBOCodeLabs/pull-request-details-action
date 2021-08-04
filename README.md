@@ -10,10 +10,10 @@ For example, if your workflow is triggered by event type `issue_comment`, the ev
 
 Input Name    | Required? | Description
 ----------    | --------- | -----------
-`owner`       | Yes       | user/org name of the repo containing the PR
-`repo`        | Yes       | repo name of the repo containing the PR
-`pull-number` | Yes       | PR number
-`repo-token`  | Yes       | the API token to use for access (usually GITHUB_TOKEN)
+`owner`       | No        | user/org name of the repo containing the PR (defaults to current org)
+`repo`        | No        | repo name of the repo containing the PR (defaults to current name)
+`pull-number` | No        | PR number (defaults to current PR number)
+`repo-token`  | No        | the API token to use for access (usually GITHUB_TOKEN)
 
 For example, to get the details of `PR #37` on `AcmeCorp/RocketSled`, you would pass the following inputs:
 
@@ -24,6 +24,8 @@ For example, to get the details of `PR #37` on `AcmeCorp/RocketSled`, you would 
     pull-number: 37
     repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+To retrieve the "current pull request" for an event attached to a pull request, you can skip all the inputs.
 
 ## Outputs
 
@@ -56,11 +58,6 @@ Note: to access these outputs, give the step an `id`, and use the step output va
 ```yaml
   - uses: HBOCodeLabs/pull-request-details-action@v1
     id: pull-request
-    with:
-      owner: AcmeCorp
-      repo: RocketSled
-      pull-number: 37
-      repo-token: ${{ secrets.GITHUB_TOKEN }}
   - run: echo Merging ${FROM_BRANCH} to ${TO_BRANCH}
     env:
       # Stash the outputs of pull-request-details-action in env vars
@@ -73,6 +70,10 @@ Note: to access these outputs, give the step an `id`, and use the step output va
 Note: for the versions listed below, your workflows can refer to either the version tag (`HBOCodeLabs/pull-request-details-action@v1.0.5`) or the major version branch (`HBOCodeLabs/pull-request-details-action@v1`).
 
 The major version branch may be updated with backwards-compatible features and bug fixes. Version tags will not be modified once released.
+
+#### 2021-08-04 - `v1.1.0` (`v1`)
+
+ - All inputs are now optional.
 
 #### 2021-07-09 - `v1.0.6` (`v1`)
 
