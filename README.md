@@ -80,20 +80,20 @@ The major version branch may be updated with backwards-compatible features and b
 
 ## Contributions
 
-Pull requests welcome. To ensure tests pass locally:
+Pull requests welcome. To ensure unit tests pass locally:
 
 ```console
 npm install
 npm test
 ```
 
-## Debugging
+## Testing changes in a live workflow
 
 To test out modifications in a developer branch, create a branch in your fork, then comment out the `dist`
 line in `.gitignore`. Then you can run the `bundle` task, check in all changes, and push up your branch.
 
 ```console
-git checkout -b debug
+git checkout -b testing
 npm run bundle
 git add .gitignore
 git add dist
@@ -104,7 +104,7 @@ git push -u origin HEAD
 In your GitHub workflow in another project, point at your custom branch:
 
 ```yaml
-  - uses: MyForkedCopy/pull-request-details-action@debug
+  - uses: MyForkedCopy/pull-request-details-action@testing
 ```
 
 [gh action docs]: https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
