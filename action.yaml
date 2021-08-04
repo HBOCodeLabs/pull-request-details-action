@@ -3,16 +3,20 @@ description: 'Retrieve branch details of an existing pull request'
 inputs:
   owner:
     description: 'user/org name'
-    required: true
+    required: false
+    default: ${{ github.event.repository.owner.login }}
   repo:
     description: 'repo name'
-    required: true
+    required: false
+    default: ${{ github.event.repository.name }}
   pull-number:
     description: 'pull request number'
-    required: true
+    required: false
+    default: ${{ github.event.issue.number }}
   repo-token:
     description: 'token to use for repo access (typically GITHUB_TOKEN)'
-    required: true
+    required: false
+    default: ${{ github.token }}
 outputs:
   base-ref:
     description: 'ref name of base branch'
