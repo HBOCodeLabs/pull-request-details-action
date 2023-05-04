@@ -35,5 +35,5 @@ outputs:
   head-repo:
     description: 'repo name of head branch'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
